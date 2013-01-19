@@ -2,7 +2,7 @@ name := "io-svc-security-play"
 
 organization := "io.svc"
 
-version := "0.1-SNAPSHOT"
+version := "0.2-SNAPSHOT"
 
 scalaVersion := "2.9.1"
 
@@ -15,7 +15,7 @@ homepage := Some(url("https://github.com/svc-io/io.svc.security"))
 resolvers := Seq("Sonatype OSS Releases" at "http://oss.sonatype.org/content/repositories/releases/",
                  "Sonatype OSS Snapshots" at "http://oss.sonatype.org/content/repositories/snapshots/")
 
-libraryDependencies += "io.svc" %% "io-svc-security" % "0.1-SNAPSHOT" changing()
+libraryDependencies += "io.svc" %% "io-svc-security" % "0.2-SNAPSHOT" changing()
 
 libraryDependencies += "org.scalaz" %% "scalaz-core" % "6.0.4"
 

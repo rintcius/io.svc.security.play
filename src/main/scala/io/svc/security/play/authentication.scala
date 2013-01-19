@@ -14,8 +14,8 @@ import play.api.mvc.Request
  */
 object authentication {
 
-  class PlayBasicAuthenticationCredentialsExtractor[A] extends CredentialsExtractor[Request[A], UsernamePasswordCredentials, CredentialsExtractionFailure] {
-    override def extractCredentials(request: Request[A]): Validation[CredentialsExtractionFailure, UsernamePasswordCredentials] = {
+  class PlayBasicAuthenticationCredentialsExtractor[A] extends Extractor[Request[A], UsernamePasswordCredentials, CredentialsExtractionFailure] {
+    override def extract(request: Request[A]): Validation[CredentialsExtractionFailure, UsernamePasswordCredentials] = {
 
       val authHeader = request.headers.get("AUTHORIZATION")
 
