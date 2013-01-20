@@ -1,7 +1,7 @@
 package io.svc.security.play
 
 import play.api.mvc.{Action, Result, Request, BodyParser}
-import io.svc.security.play.authentication.PlayAuth
+import io.svc.security.play.authentication.PlayAuthenticator
 
 /**
  * @author Rintcius Blok
@@ -9,15 +9,15 @@ import io.svc.security.play.authentication.PlayAuth
 object security {
   trait PlaySecurity[A, User] {
 
-    val auth: PlayAuth[A, User]
+    val authenticator: PlayAuthenticator[A, User]
 
-    def securedAction(parser: BodyParser[A])(action: (Request[A], User) => Result): Action[A] = Action(parser) {
+    def onAuthenticated(parser: BodyParser[A])(action: (Request[A], User) => Result): Action[A] = Action(parser) {
       req =>
-        auth.authentication(action)(req)
+        authenticator.onSuccess(action)(req)
     }
 
     //TODO how to get this working..
-    //def securedAction(action: (Request[AnyContent], User) => Result): Action[A] = securedAction (BodyParsers.parse.anyContent) action
+    //def onAuthenticated(action: (Request[AnyContent], User) => Result): Action[A] = onAuthenticated (BodyParsers.parse.anyContent) action
   }
 
 }
